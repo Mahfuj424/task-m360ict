@@ -42,7 +42,7 @@ export const ProductCard = ({ product }: Props) => {
         </div>
       </div>
 
-      <button className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition bg-black text-white text-sm px-4 py-2 cursor-pointer rounded">
+      <button className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 duration-500 font-semibold hover:bg-white hover:text-black hover:border text-lg transition bg-black text-white px-5 py-2 cursor-pointer rounded">
         Add to Cart
       </button>
     </div>

@@ -5,6 +5,7 @@ import { Category } from "./components/HomeSection/shobByCategory/Category";
 import ProductOfTheWeek from "./components/HomeSection/ProductOfTheWeek/ProductOfTheWeek";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import FeaturedProducts from "./components/HomeSection/FeaturesProduct/FeatureProduct";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <BannerSlider />
         <Category />
         <ProductOfTheWeek />
+        <FeaturedProducts />
       </BrowserRouter>
     </Provider>
   );

@@ -6,7 +6,7 @@ export type ButtonVariant = "default" | "outlined"; // Change from 'outline' to 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  size?: "default" | "sm" | "lg";
+  size?: "default" | "sm" | "lg" | "icon";
   className?: string;
 }
 

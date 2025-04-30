@@ -46,6 +46,11 @@ export default function ProductsOfTheWeek() {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
+      <div className="flex justify-center mt-8">
+        <button className="duration-500 font-semibold hover:bg-white hover:text-black hover:border text-lg transition bg-black text-white px-5 py-2 cursor-pointer rounded">
+          View All Products
+        </button>
+      </div>
     </section>
   );
 }
