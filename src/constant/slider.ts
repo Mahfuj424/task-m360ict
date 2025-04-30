@@ -1,7 +1,7 @@
 import { SlideData } from "../types/bannerSliderType";
 import slider1 from "../assets/slider/slider1.png";
 import slider2 from "../assets/slider/slider2.webp";
-import slider3 from "../assets/slider/slider3.jpg";
+import slider3 from "../assets/slider/slider3.webp";
 
 export const slides: SlideData[] = [
   {

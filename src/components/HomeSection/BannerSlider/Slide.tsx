@@ -121,7 +121,7 @@ const Slide = ({ data, direction }: SlideProps) => {
           <img
             src={data.image || "/placeholder.svg"}
             alt={data.title || ""}
-            className="object-contain"
+            className="object-fill rounded-full"
           />
 
           {/* Decorative elements */}
