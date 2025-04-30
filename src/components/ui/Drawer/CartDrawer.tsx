@@ -1,30 +1,9 @@
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import Drawer from "./Drawer";
 import { Button } from "antd";
-
-const cartItems = [
-  {
-    id: "1",
-    name: "Eco-friendly Cotton T-shirt",
-    price: 29.99,
-    quantity: 1,
-    image: "/placeholder.svg",
-  },
-  {
-    id: "2",
-    name: "Bamboo Water Bottle",
-    price: 24.99,
-    quantity: 2,
-    image: "/placeholder.svg",
-  },
-  {
-    id: "3",
-    name: "Recycled Denim Jeans",
-    price: 59.99,
-    quantity: 1,
-    image: "/placeholder.svg",
-  },
-];
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../redux/store";
+import { removeFromCart } from "../../../redux/slices/cartSlice";
 
 export default function CartDrawer({
   isOpen,
@@ -33,9 +12,20 @@ export default function CartDrawer({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+
+  // Temporary placeholder image and product name for demonstration
+  const getProductDetails = (id: number) => ({
+    name: `Product ${id}`,
+    image: "/placeholder.svg",
+    price: 19.99,
+  });
+
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => sum + getProductDetails(item.id).price * item.quantity,
     0
   );
 
@@ -53,6 +43,7 @@ export default function CartDrawer({
           <X className="h-5 w-5" />
         </button>
       </div>
+
       <div className="flex-1 overflow-y-auto p-4">
         {cartItems.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full">
@@ -61,41 +52,48 @@ export default function CartDrawer({
           </div>
         ) : (
           <ul className="space-y-4">
-            {cartItems.map((item) => (
-              <li
-                key={item.id}
-                className="flex items-center gap-4 border-b pb-4"
-              >
-                <div className="h-20 w-20 rounded-md bg-gray-100">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-sm font-medium">{item.name}</h3>
-                  <p className="text-purple-600 font-semibold mt-1">
-                    ${item.price.toFixed(2)}
-                  </p>
-                  <div className="flex items-center mt-2">
-                    <button className="p-1 rounded-full hover:bg-gray-100">
-                      <Minus className="h-3 w-3" />
-                    </button>
-                    <span className="mx-2 text-sm">{item.quantity}</span>
-                    <button className="p-1 rounded-full hover:bg-gray-100">
-                      <Plus className="h-3 w-3" />
-                    </button>
+            {cartItems.map((item) => {
+              const product = getProductDetails(item.id);
+              return (
+                <li
+                  key={item.id}
+                  className="flex items-center gap-4 border-b pb-4"
+                >
+                  <div className="h-20 w-20 rounded-md bg-gray-100">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
-                </div>
-                <button className="p-1 rounded-full hover:bg-gray-100">
-                  <X className="h-4 w-4 text-gray-500" />
-                </button>
-              </li>
-            ))}
+                  <div className="flex-1">
+                    <h3 className="text-sm font-medium">{product.name}</h3>
+                    <p className="text-purple-600 font-semibold mt-1">
+                      ${product.price.toFixed(2)}
+                    </p>
+                    <div className="flex items-center mt-2">
+                      <button className="p-1 rounded-full hover:bg-gray-100">
+                        <Minus className="h-3 w-3" />
+                      </button>
+                      <span className="mx-2 text-sm">{item.quantity}</span>
+                      <button className="p-1 rounded-full hover:bg-gray-100">
+                        <Plus className="h-3 w-3" />
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => dispatch(removeFromCart(item.id))}
+                    className="p-1 rounded-full hover:bg-gray-100"
+                  >
+                    <X className="h-4 w-4 text-gray-500" />
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>
+
       {cartItems.length > 0 && (
         <div className="p-4 border-t">
           <div className="flex justify-between mb-4">
@@ -103,10 +101,13 @@ export default function CartDrawer({
             <span className="font-bold">${subtotal.toFixed(2)}</span>
           </div>
           <div className="grid gap-2">
-            <Button className="w-full bg-purple-600 hover:bg-purple-700">
+            <Button
+              className="w-full bg-purple-600 hover:bg-purple-700"
+              type="primary"
+            >
               Checkout
             </Button>
-            <Button variant="outlined" className="w-full">
+            <Button className="w-full" type="default">
               View Cart
             </Button>
           </div>
