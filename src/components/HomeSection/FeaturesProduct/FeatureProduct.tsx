@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { featureProducts } from "../../../constant/featureProduct";
+import { Link } from "react-router-dom";
 
 export default function EnhancedFeaturedProducts() {
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
@@ -165,9 +166,12 @@ export default function EnhancedFeaturedProducts() {
         viewport={{ once: true, amount: 0.2 }}
         className="mt-10 text-center"
       >
-        <button className="duration-500 font-semibold hover:bg-white hover:text-black hover:border text-lg transition bg-black text-white px-5 py-2 cursor-pointer rounded">
+        <Link
+          to={"/shop"}
+          className="duration-500 font-semibold hover:bg-white hover:text-black hover:border text-lg transition bg-black text-white px-5 py-2 cursor-pointer rounded"
+        >
           View All Products
-        </button>
+        </Link>
       </motion.div>
     </section>
   );

@@ -42,8 +42,8 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center">
               <span className="text-4xl font-bold">
-                <span className="text-black">eco</span>
-                <span className="text-purple-600">mart</span>
+                <span className="text-black">Buy</span>
+                <span className="text-purple-600">let</span>
               </span>
             </Link>
 

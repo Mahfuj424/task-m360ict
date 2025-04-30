@@ -2,6 +2,7 @@ import { Spin } from "antd";
 import { useGetProductsQuery } from "../../../redux/api/productApi";
 import { Product } from "../../../types/productType";
 import { ProductCard } from "../../ui/Card/ProductCard";
+import { Link } from "react-router-dom";
 
 export default function ProductsOfTheWeek() {
   const { data, isLoading, isError } = useGetProductsQuery({
@@ -47,9 +48,12 @@ export default function ProductsOfTheWeek() {
         ))}
       </div>
       <div className="flex justify-center mt-8">
-        <button className="duration-500 font-semibold hover:bg-white hover:text-black hover:border text-lg transition bg-black text-white px-5 py-2 cursor-pointer rounded">
+        <Link
+          to={"/shop"}
+          className="duration-500 font-semibold hover:bg-white hover:text-black hover:border text-lg transition bg-black text-white px-5 py-2 cursor-pointer rounded"
+        >
           View All Products
-        </button>
+        </Link>
       </div>
     </section>
   );

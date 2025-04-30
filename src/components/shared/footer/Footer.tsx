@@ -76,7 +76,10 @@ export default function AntdFooter() {
       <ServiceFeatures />
       <Footer style={{ padding: 0, background: "#f5f5f5" }}>
         {/* Main Footer Content */}
-        <div style={{ background: "#fff", padding: "60px 0 40px" }}>
+        <div
+          style={{ background: "#fff", padding: "60px 0 40px" }}
+          className="overflow-x-hidden"
+        >
           <div className="container mx-auto px-4">
             <Row gutter={[48, 32]}>
               {/* Company Info */}
@@ -84,8 +87,8 @@ export default function AntdFooter() {
                 <div className="mb-6">
                   <Link to="/" className="flex items-center">
                     <span className="text-2xl font-bold">
-                      <span className="text-black">eco</span>
-                      <span style={{ color: "#7c3aed" }}>mart</span>
+                      <span className="text-black">Buy</span>
+                      <span style={{ color: "#7c3aed" }}>let</span>
                     </span>
                   </Link>
                 </div>
