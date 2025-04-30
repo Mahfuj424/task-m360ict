@@ -3,6 +3,7 @@ import { Product } from "../../../types/productType";
 import { Heart, Eye, ShoppingBag } from "lucide-react";
 import { addToCart } from "../../../redux/slices/cartSlice";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 type Props = {
   product: Product;
@@ -22,7 +23,10 @@ export const ProductCard = ({ product }: Props) => {
   ).toFixed(2);
 
   return (
-    <div className="relative group rounded-lg overflow-hidden shadow-sm transition-all hover:shadow-lg bg-white">
+    <Link
+      to={`/product/${product.id}`}
+      className="relative group rounded-lg overflow-hidden shadow-sm transition-all hover:shadow-lg bg-white"
+    >
       {/* Discount badge */}
       {product.discountPercentage > 0 && (
         <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded z-10">
@@ -80,6 +84,6 @@ export const ProductCard = ({ product }: Props) => {
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

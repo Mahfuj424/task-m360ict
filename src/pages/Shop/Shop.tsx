@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useGetProductsQuery } from "../../redux/api/productApi";
-import { ProductCard } from "../ui/Card/ProductCard";
+import { ProductCard } from "../../components/ui/Card/ProductCard";
 import { Product } from "../../types/productType";
+import Spinner from "../../components/ui/Spinner/Spinner";
 
 const PRODUCTS_PER_PAGE = 12;
 
@@ -17,7 +18,9 @@ const ShopPage = () => {
   const total = data?.total || 0;
   const totalPages = Math.ceil(total / PRODUCTS_PER_PAGE);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return <Spinner />;
+  }
   if (isError) return <p>Something went wrong!</p>;
 
   return (

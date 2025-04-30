@@ -9,6 +9,10 @@ export type Product = {
   brand: string;
   category: string;
   thumbnail: string;
+  reviews: string[];
+  returnPolicy: string;
+  shippingInformation: string;
+  warrantyInformation: string;
   images: string[];
   tags: string[];
 };
